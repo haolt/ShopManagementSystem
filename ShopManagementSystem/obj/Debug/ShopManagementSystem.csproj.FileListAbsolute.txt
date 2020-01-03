@@ -11,3 +11,15 @@ C:\Users\Admin\source\repos\ShopManagementSystem\ShopManagementSystem\obj\Debug\
 C:\Users\Admin\source\repos\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.frmTableManagement.resources
 C:\Users\Admin\source\repos\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.fAccountProfile.resources
 C:\Users\Admin\source\repos\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.fAdminView.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\bin\Debug\ShopManagementSystem.exe.config
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.exe
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.pdb
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\bin\Debug\ShopManagementSystem.exe
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\bin\Debug\ShopManagementSystem.pdb
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.csprojResolveAssemblyReference.cache
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.fAccountProfile.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.fAdminView.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.fLogin.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.Properties.Resources.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.frmTableManagement.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.csproj.GenerateResource.Cache
