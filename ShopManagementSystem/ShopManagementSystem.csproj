@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Call API\DataConn.cs" />
     <Compile Include="Call API\Service.cs" />
     <Compile Include="fAccountProfile.cs">
       <SubType>Form</SubType>
@@ -68,8 +69,11 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ChiNhanhModel.cs" />
+    <Compile Include="Model\ChiTietHoaDonModel.cs" />
     <Compile Include="Model\CTDonMuaHang.cs" />
+    <Compile Include="Model\KhachHangModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\SanPhamModel.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

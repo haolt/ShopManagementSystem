@@ -38,11 +38,6 @@ namespace ShopManagementSystem
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             login(userName: txtName.Text.Trim(), password: txtPhoneNumber.Text.Trim());  
-            //frmTableManagement f = new frmTableManagement();
-         //   this.Hide();
-            // Asynct Steps
-          //  f.ShowDialog();
-          //  this.Show();
         }
 
     
@@ -54,22 +49,13 @@ namespace ShopManagementSystem
          {
             frmTableManagement f = new frmTableManagement();
                this.Hide();
-           //  Asynct Steps
               f.ShowDialog();
               this.Show();
          }
          else
          {
-           Console.WriteLine(loginModel.getMessage());
+             MessageBox.Show(loginModel.getMessage());
          }
-          //  String sql = "select * from NhanVien";
-         //   SqlCommand com = new SqlCommand(sql, con);
-         //   com.CommandType = CommandType.Text;
-          //  SqlDataAdapter da = new SqlDataAdapter(com);
-         //   DataTable dt = new DataTable();
-          //  da.Fill(dt);
-        //    con.Close();
-         //   Console.WriteLine(dt);
         }
     }
 }
