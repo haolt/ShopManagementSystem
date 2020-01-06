@@ -8,25 +8,18 @@ namespace ShopManagementSystem.Model
 {
     class SanPhamModel
     {
-        public String idSanPham;
-        public String tenSanPham;
-        public String idNhaCC;
-        public String idLoaiSanPham;
-        public String mauSac;
-        public String giaThanh;
+        public String idSanPham { get; set; }
+        public String tenSanPham { get; set; }
+        public String idNhaCC { get; set; }
+        public String idLoaiSanPham { get; set; }
+        public String mauSac { get; set; }
+        public String giaNhap { get; set; }
+
+        public String giaBan { get; set; }
 
         public SanPhamModel()
         {
 
-        }
-
-        public SanPhamModel(string idSanPham, string tenSanPham, string idNhaCC, string idLoaiSanPham, string mauSac)
-        {
-            this.idSanPham = idSanPham;
-            this.tenSanPham = tenSanPham;
-            this.idNhaCC = idNhaCC;
-            this.idLoaiSanPham = idSanPham;
-            this.mauSac = mauSac;
         }
 
         public SanPhamModel(Dictionary<String, Object> dict)
@@ -36,6 +29,9 @@ namespace ShopManagementSystem.Model
             this.idNhaCC = (String)dict["IDNhaCC"];
             this.idLoaiSanPham = (String)dict["IDLoaiSanPham"];
             this.mauSac = (String)dict["MauSac"];
+            this.giaNhap = (String)dict["MauSac"];
+            this.giaBan = (String)dict["MauSac"];
+
 
         }
     }
