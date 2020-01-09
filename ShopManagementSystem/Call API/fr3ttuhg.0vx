@@ -32,8 +32,9 @@ namespace ShopManagementSystem
                      user.userName = ds.Tables[0].Rows[0]["UserName"].ToString();
                      user.diaChi = "";
 
-                     Properties.Settings.Default["UserSigning"] = user.idNhanVien;
-                     Properties.Settings.Default.Save();  // Saves settings in application configuration file
+
+                     Properties.Settings.Default["UserSigning"] = user;
+                     Properties.Settings.Default.Save(); // Saves settings in application configuration file
                      model.errorCode = 0;
                      model.message = "Thành công";
                      model.user = user;
@@ -75,6 +76,7 @@ namespace ShopManagementSystem
                   user.sdt = ds.Tables[0].Rows[0]["SDT"].ToString();
                   user.userName = ds.Tables[0].Rows[0]["UserName"].ToString();
                   user.diaChi = ds.Tables[0].Rows[0]["DiaChi"].ToString();
+
 
                   Properties.Settings.Default["UserSigning"] = user.idNhanVien;
                     Properties.Settings.Default.Save(); // Saves settings in application configuration file
@@ -357,51 +359,20 @@ namespace ShopManagementSystem
                     dict["IDChiNhanh"] = ds.Tables[0].Rows[0]["IDChiNhanh"].ToString();
                     dict["SDT"] = ds.Tables[0].Rows[0]["SDT"].ToString();
                     dict["Sex"] = ds.Tables[0].Rows[0]["Sex"].ToString();
-                    dict["UserName"] = ds.Tables[0].Rows[0]["UserName"].ToString();
-                    dict["PassWord"] = "";
-                    dict["DiaChi"] = ds.Tables[0].Rows[0]["UserName"].ToString();
+                    khModel = new NhanVienModel(dict: dict);
+                    return khModel;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 
-                    khModel = new NhanVienModel(dict: dict);
-                    return khModel;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public NhanVienModel traCuuThongTinQuanLy(String idNV)
-        {
-            NhanVienModel khModel = new NhanVienModel();
-            string select = "select * from NhanVien where IDNhanVien ='" + idNV + "'";
-            DataSet ds = DataConn.GrdSource(select);
-            if (ds != null)
-            {
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-                    Dictionary<String, Object> dict = new Dictionary<string, object>();
-                    dict["IDNhanVien"] = ds.Tables[0].Rows[0]["IDNhanVien"].ToString();
-                    dict["TenNhanVien"] = ds.Tables[0].Rows[0]["TenNhanVien"].ToString();
-                    dict["IDChiNhanh"] = ds.Tables[0].Rows[0]["IDChiNhanh"].ToString();
-                    dict["SDT"] = ds.Tables[0].Rows[0]["SDT"].ToString();
-                    dict["Sex"] = ds.Tables[0].Rows[0]["Sex"].ToString();
-                    khModel = new NhanVienModel(dict: dict);
-                    return khModel;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
         public List<SanPhamModel> traCuuSanPham()
         {
             
@@ -424,12 +395,8 @@ namespace ShopManagementSystem
                         dict["GiaNhap"] = ds.Tables[0].Rows[i]["GiaNhap"].ToString();
                         dict["GiaBan"] = ds.Tables[0].Rows[i]["GiaBan"].ToString();
 
-                        if ((Boolean)ds.Tables[0].Rows[i]["flag"] == true)
-                        {
-                            SanPhamModel model = new SanPhamModel(dict: dict);
-                            listModel.Add(model);
-                        }
-                        
+                        SanPhamModel model = new SanPhamModel(dict: dict);
+                        listModel.Add(model);
                     }
 
                     return listModel;
@@ -443,145 +410,6 @@ namespace ShopManagementSystem
             {
                 return null;
             }
-        }
-
-        public SanPhamModel traCuuSanPham(String idSP)
-        {
-            SanPhamModel model = new SanPhamModel();
-
-            string select = "select * from SanPham where IDSanPham='"+idSP+"'";
-            DataSet ds = DataConn.GrdSource(select);
-            if (ds != null)
-            {
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-
-                        Dictionary<String, Object> dict = new Dictionary<string, object>();
-                        dict["IDSanPham"] = ds.Tables[0].Rows[0]["IDSanPham"].ToString();
-                        dict["TenSanPham"] = ds.Tables[0].Rows[0]["TenSanPham"].ToString();
-                        dict["IDNhaCC"] = ds.Tables[0].Rows[0]["IDNhaCC"].ToString();
-                        dict["IDLoaiSanPham"] = ds.Tables[0].Rows[0]["IDLoaiSanPham"].ToString();
-                        dict["MauSac"] = ds.Tables[0].Rows[0]["MauSac"].ToString();
-                        dict["GiaNhap"] = ds.Tables[0].Rows[0]["GiaNhap"].ToString();
-                        dict["GiaBan"] = ds.Tables[0].Rows[0]["GiaBan"].ToString();
-                        if ((Boolean)ds.Tables[0].Rows[0]["flag"] == true)
-                        {
-                            model = new SanPhamModel(dict: dict);
-                            return model;
-                        }
-                        else
-                        {
-                            return null;
-                        }
-
-
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public SanPhamModel capNhatSanPham(SanPhamModel model)
-        {
-            String select = "UPDATE SanPham SET TenSanPham=N'" + model.tenSanPham + "'" +
-               ",IDNhaCC = '" + model.idNhaCC + "',IDLoaiSanPham = '" + model.idLoaiSanPham + "',MauSac = N'" + model.mauSac + "' ,GiaNhap = N'" + model.giaNhap + "',GiaBan = N'" + model.giaBan + "'" +
-           "where IDSanPham = '" + model.idSanPham + "' ";
-            DataConn.ThucHienCmd(select);
-            SanPhamModel modelSP = new SanPhamModel();
-
-            string sql = "select * from SanPham where IDSanPham='" + model.idSanPham + "'";
-            DataSet ds = DataConn.GrdSource(sql);
-            if (ds != null)
-            {
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-
-                    Dictionary<String, Object> dict = new Dictionary<string, object>();
-                    dict["IDSanPham"] = ds.Tables[0].Rows[0]["IDSanPham"].ToString();
-                    dict["TenSanPham"] = ds.Tables[0].Rows[0]["TenSanPham"].ToString();
-                    dict["IDNhaCC"] = ds.Tables[0].Rows[0]["IDNhaCC"].ToString();
-                    dict["IDLoaiSanPham"] = ds.Tables[0].Rows[0]["IDLoaiSanPham"].ToString();
-                    dict["MauSac"] = ds.Tables[0].Rows[0]["MauSac"].ToString();
-                    dict["GiaNhap"] = ds.Tables[0].Rows[0]["GiaNhap"].ToString();
-                    dict["GiaBan"] = ds.Tables[0].Rows[0]["GiaBan"].ToString();
-
-                    modelSP = new SanPhamModel(dict: dict);
-
-
-                    return modelSP;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Boolean xoaSanPham(String idSP)
-        {
-            String select = "UPDATE SanPham SET flag='" + 0 + "' where IDSanPham = '" + idSP + "' ";
-            try
-            {
-                DataConn.ThucHienCmd(select);
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public Boolean ThemSanPham(SanPhamModel model)
-        {
-            String idNV = model.idSanPham;
-            string s = "SELECT IDSanPham, IDNhaCC, IDLoaiSanPham FROM SanPham";
-            SqlDataReader dr = DataConn.ThucHienReader(s);
-            if (dr != null)
-            {
-                while (dr.Read())
-                {
-                    if (dr.GetString(0) == model.idSanPham)
-                    {
-                        MessageBox.Show("Đã có mã sản phẩm này! Hãy nhập mã khác!");
-                        dr.Close();
-                        dr.Dispose();
-                        return false;
-                    }
-                    else
-                    {
-                        string select = "INSERT INTO SanPham(IDSanPham,TenSanPham,IDNhaCC,IDLoaiSanPham,MauSac,GiaNhap,GiaBan) VALUES(N'" + model.idSanPham + "',N'" + model.tenSanPham + "',N'" + model.idNhaCC + "',N'" + model.idLoaiSanPham + "',N'" + model.mauSac + "',N'" + model.giaNhap + "',N'" + model.giaBan + "')";
-                        try
-                        {
-                            dr.Close();
-                            dr.Dispose();
-                            DataConn.ThucHienCmd(select);
-                        
-                            return true;
-                        }
-                        catch
-                        {
-                            dr.Close();
-                            dr.Dispose();
-                            return false;
-                        }
-                        
-                    }
-                }
-            }
-            dr.Close();
-            dr.Dispose();
-            return false;
         }
 
         public Boolean ThemNhanVien(NhanVienModel model)
@@ -652,14 +480,20 @@ namespace ShopManagementSystem
                             dict["SDT"] = ds.Tables[0].Rows[i]["SDT"].ToString();
                             dict["Sex"] = ds.Tables[0].Rows[i]["Sex"].ToString();
                             dict["UserName"] = ds.Tables[0].Rows[i]["UserName"].ToString();
-                        //    dict["PassWord"] = ds.Tables[0].Rows[i]["PassWord"].ToString();
-                            dict["DiaChi"] = "";
+                            dict["PassWord"] = ds.Tables[0].Rows[i]["PassWord"].ToString();
                             dict["flag"] = (Boolean)ds.Tables[0].Rows[i]["flag"];
                             NhanVienModel model = new NhanVienModel(dict: dict);
+                            if (isGetDeletedNV == true)
+                            {
+                                listNV.Add(model);
+                            }
+                            else
+                            {
                                 if ((Boolean)dict["flag"] == true)
                                 {
                                     listNV.Add(model);
                                 }
+                            }
 
                         }
                         
@@ -739,135 +573,6 @@ namespace ShopManagementSystem
             }
         }
 
-        public Boolean xoaNhaCC(String idNhaCC)
-        {
-            String select = "UPDATE NhaCungCap SET flag='" + 0 + "' where IDNhaCungCap = '" + idNhaCC + "' ";
-            try
-            {
-                DataConn.ThucHienCmd(select);
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public Boolean themNhaCC(NhaCungCapModel model)
-        {
-            String idNV = model.idNhaCUngCap;
-            string s = "SELECT IDNhaCungCap FROM NhaCungCap";
-            SqlDataReader dr = DataConn.ThucHienReader(s);
-            if (dr != null)
-            {
-                while (dr.Read())
-                {
-                    if (dr.GetString(0) == model.idNhaCUngCap)
-                    {
-                        MessageBox.Show("Đã có mã nhà cung cấp này! Hãy nhập mã khác!");
-                        dr.Close();
-                        dr.Dispose();
-                        return false;
-                    }
-                    else
-                    {
-                        string select = "INSERT INTO NhaCungCap(IDNhaCungCap,TenNhaCC,DiaChi,SDT,Fax) VALUES(N'" + model.idNhaCUngCap + "',N'" + model.tenNhaCC + "',N'" + model.diaChi + "',N'" + model.sdt + "',N'" + model.fax+"')";
-                        try
-                        {
-                            dr.Close();
-                            dr.Dispose();
-                            DataConn.ThucHienCmd(select);
-
-                            return true;
-                        }
-                        catch
-                        {
-                            dr.Close();
-                            dr.Dispose();
-                            return false;
-                        }
-
-                    }
-                }
-            }
-            dr.Close();
-            dr.Dispose();
-            return false;
-        }
-
-        public NhaCungCapModel capNhatNhaCungCap(NhaCungCapModel model)
-        {
-            String select = "UPDATE NhaCungCap SET TenNhaCC=N'" + model.tenNhaCC + "'" +
-               ",DiaChi = '" + model.diaChi + "',SDT = '" + model.sdt + "',Fax = N'" + model.fax + "'" +
-           "where IDNhaCungCap = '" + model.idNhaCUngCap + "' ";
-            DataConn.ThucHienCmd(select);
-            NhaCungCapModel modelSP = new NhaCungCapModel();
-
-            string sql = "select * from NhaCungCap where IDNhaCungCap='" + model.idNhaCUngCap + "'";
-            DataSet ds = DataConn.GrdSource(sql);
-            if (ds != null)
-            {
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-
-                    Dictionary<String, Object> dict = new Dictionary<string, object>();
-                    dict["IDNhaCungCap"] = ds.Tables[0].Rows[0]["IDNhaCungCap"].ToString();
-                    dict["TenNhaCC"] = ds.Tables[0].Rows[0]["TenNhaCC"].ToString();
-                    dict["DiaChi"] = ds.Tables[0].Rows[0]["DiaChi"].ToString();
-                    dict["SDT"] = ds.Tables[0].Rows[0]["SDT"].ToString();
-                    dict["Fax"] = ds.Tables[0].Rows[0]["Fax"].ToString();
-                    dict["flag"] = ds.Tables[0].Rows[0]["flag"].ToString();
-
-                    modelSP = new NhaCungCapModel(dict: dict);
-
-
-                    return modelSP;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public List<NhaCungCapModel> danhSachNhaCC()
-        {
-            List<NhaCungCapModel> listNV = new List<NhaCungCapModel>();
-            string select = "SELECT * FROM NhaCungCap";
-            DataSet ds = DataConn.GrdSource(select);
-            if (ds != null)
-            {
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        Dictionary<String, Object> dict = new Dictionary<string, object>();
-                        dict["IDNhaCungCap"] = ds.Tables[0].Rows[i]["IDNhaCungCap"].ToString();
-                        dict["TenNhaCC"] = ds.Tables[0].Rows[i]["TenNhaCC"].ToString();
-                        dict["DiaChi"] = ds.Tables[0].Rows[i]["DiaChi"].ToString();
-                        dict["SDT"] = ds.Tables[0].Rows[i]["SDT"].ToString();
-                        dict["Fax"] = ds.Tables[0].Rows[i]["Fax"].ToString();
-                        dict["flag"] = (Boolean)ds.Tables[0].Rows[i]["flag"];
-                        NhaCungCapModel model = new NhaCungCapModel(dict: dict);
-                       
-                            if ((Boolean)dict["flag"] == true)
-                            {
-                                listNV.Add(model);
-                            }
-                        
-
-                    }
-
-                }
-            }
-
-            return listNV;
-        }
         public ChiNhanhModel traCuuChiNhanh(String idChiNhanh)
         {
             ChiNhanhModel khModel = new ChiNhanhModel();
@@ -1046,23 +751,6 @@ namespace ShopManagementSystem
 
             Properties.Settings.Default["UserSigning"] = null;
             Properties.Settings.Default.Save(); // Saves settings in application configuration file
-        }
-
-        public Boolean updateThongTinNV(NhanVienModel model)
-        {
-            String select = "UPDATE NHANVIEN SET TenNhanVIen=N'" + model.tenNhanVien + "'" +
-                ",IDChiNhanh = '" + model.idChiNhanh + "',SDT = '" + model.sdt + "',Sex = N'" + model.gioitinh + "'" +
-            "where IDNhanVien = '" + model.idNhanVien + "' ";
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-            DataConn.ThucHienCmd(select);
-            return true;
         }
     }
 }

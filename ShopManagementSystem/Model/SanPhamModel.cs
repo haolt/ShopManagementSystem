@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopManagementSystem.Model
+namespace ShopManagementSystem
 {
     class SanPhamModel
     {
@@ -29,8 +29,8 @@ namespace ShopManagementSystem.Model
             this.idNhaCC = (String)dict["IDNhaCC"];
             this.idLoaiSanPham = (String)dict["IDLoaiSanPham"];
             this.mauSac = (String)dict["MauSac"];
-            this.giaNhap = (String)dict["MauSac"];
-            this.giaBan = (String)dict["MauSac"];
+            this.giaNhap = (String)dict["GiaNhap"];
+            this.giaBan = (String)dict["GiaBan"];
 
 
         }

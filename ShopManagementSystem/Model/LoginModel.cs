@@ -8,17 +8,18 @@ namespace ShopManagementSystem
 {
     class LoginModel
     {
-        int errorCode { get; set; }
-        String message {get; set;}
-        UserInfoModel user { get; set; }
-        String status { get; set; }
+        public int errorCode { get; set; }
+        public String message { get; set; }
+        public NhanVienModel user { get; set; }
+        public String status { get; set; }
 
         public LoginModel()
         {
 
         }
 
-        public LoginModel(int errrorCode,  String message,  UserInfoModel user,  String status) {
+        public LoginModel(int errrorCode, String message, NhanVienModel user, String status)
+        {
             this.errorCode = errrorCode;
             this.message = message;
             this.user = user;
@@ -29,7 +30,7 @@ namespace ShopManagementSystem
         {
             this.errorCode = (int)dict["errorCode"];
             this.message = (String)dict["message"];
-            this.user = (UserInfoModel)dict["user"];
+            this.user = (NhanVienModel)dict["user"];
             this.status = (String)dict["status"];
         }
 

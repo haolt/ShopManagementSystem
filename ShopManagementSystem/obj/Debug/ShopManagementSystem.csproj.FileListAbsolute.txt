@@ -23,3 +23,5 @@ C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\De
 C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.Properties.Resources.resources
 C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.frmTableManagement.resources
 C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.csproj.GenerateResource.Cache
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.InHoaDon.resources
+C:\Users\1998v\OneDrive\Desktop\ShopManagementSystem\ShopManagementSystem\obj\Debug\ShopManagementSystem.ConfirmDialog.resources
