@@ -15,6 +15,7 @@ namespace ShopManagementSystem
         public String gioitinh { get; set; }
         public String userName { get; set; }
         public String passWord { get; set; }
+        public String diaChi { get; set; }
 
         public NhanVienModel()
         {
@@ -29,7 +30,8 @@ namespace ShopManagementSystem
             this.idNhanVien = (String)dict["IDNhanVien"];
             this.idChiNhanh = (String)dict["IDChiNhanh"];
             this.userName = (String)dict["UserName"];
-            this.passWord = (String)dict["PassWord"];
+         //   this.passWord = (String)dict["PassWord"];
+            this.diaChi = (String)dict["DiaChi"];
         }
     }
 }

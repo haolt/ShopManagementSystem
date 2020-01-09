@@ -8,11 +8,11 @@ namespace ShopManagementSystem
 {
     class ChiNhanhModel
     {
-        string idCN { get; set;}
-        string tenCN { get; set; }
-        string idKV { get; set; }
-        string diachi { get; set; }
-        int slNV { get; set; }
+       public string idCN { get; set;}
+       public string tenCN { get; set; }
+       public string idKV { get; set; }
+       public string diachi { get; set; }
+       public int slNV { get; set; }
 
         public ChiNhanhModel()
         {

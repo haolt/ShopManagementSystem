@@ -14,6 +14,8 @@ namespace ShopManagementSystem
        public List<CTDonMuaHang> data { get; set; }
        public String ngaythang { get; set; }
 
+       public String tenKH { get; set; }
+
        public HoaDonModel()
        {
 
@@ -34,6 +36,7 @@ namespace ShopManagementSystem
             this.idNhanVien = (String)dict["IDNhanVien"];
             this.data = (List<CTDonMuaHang>)dict["data"];
             this.ngaythang = (String)dict["NgayThang"];
+            this.tenKH = (String)dict["TenKhachHang"];
         }
 
     }
